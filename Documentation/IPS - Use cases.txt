@@ -1,0 +1,48 @@
+Webshop for video games
+
+
+- Case: Creating Account
+Success scenario: User enters correct data and chooses account type (customer or developer). 
+Developers can upload games, customers can only purchase and write reviews.
+Failure: Invalid email adress, password format or username are provided, user is returned to registration form.
+
+- Case: Log in 
+Success scenario: User logs in successfully.
+Failure: Wrong credentials are entered. User is returned to the log in form.
+
+
+- Case: Authorization 
+Success scenario: User is asked to give authorization to a third party. Authorization given.
+Failure: Authorization is denied
+
+
+- Case: View information about a game 
+Success scenario: User finds needed information about the game (genre, price, system requirements, publish date)
+ 
+- Case: View aggregated data 
+Success scenario: User sees a statistic (how much did he spent in total on this account, how much per month/day)
+Failure: Not enough data is available to create a statistic.
+
+- Case: Games search filter
+Success scenario: User finds a list of games according to the criteria he entered
+Failure: No games answering the criteria are found.
+
+- Case: Publishing a new game 
+Success scenraio: Developer user uploads a product, adds description and price.
+Failure: Missing some piece of information. Product not uploaded.
+
+- Case: Creating a game review
+A customer attempts to add a review about a game
+Success scenario: The customer owns the game and the review is uploaded
+Failure The customer does not own the game and the review is not uploaded
+
+
+- Case: Editing/Deleting a review
+Customer attempts to edit or delete an existing review
+Success scenario: The review is written by the user and the changes are applied
+Failure: The review is not written by the user and no changes can be made.
+
+- Case: Deleting a product
+A developer attempts to delete a prodcut.
+Success: Product is recently uploaded and can be removed.
+Failure: Product can not be deleted because it was not uploaded recently.
