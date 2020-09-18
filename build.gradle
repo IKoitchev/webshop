@@ -1,0 +1,29 @@
+
+plugins {
+    id 'application'
+
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+application{
+    mainClassName 'project.Publisher'
+}
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation group: 'org.glassfish.jersey.bundles', name: 'jaxrs-ri', version: '2.+'
+    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.+'
+
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.+'
+
+    implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.+'
+
+    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-http', version: '2.+'
+
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.+'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.+'
+}
