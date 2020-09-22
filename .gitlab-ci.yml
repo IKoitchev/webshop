@@ -1,5 +1,5 @@
 before_script:
-- export GRADLE_USER_HOME=$(pwd)/.gradle
+- set GRADLE_USER_HOME=$(pwd)/.gradle
 - chmod +x ./gradlew
  
 build:
