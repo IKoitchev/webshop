@@ -1,7 +1,7 @@
-before_script:
-- set GRADLE_USER_HOME=$(pwd)/.gradle
-- chmod +x ./gradlew
- 
+stages:
+  - build
+  - test
+
 build:
   script:
     - ./gradlew assemble
