@@ -20,7 +20,7 @@ public class Publisher {
             System.out.println("Hosting resources at " + BASE_URI.toURL());
 
             System.out.println("Try the following GET operations in your internet browser: ");
-            String[] getOperations = {BASE_URI.toURL() + "products/home", BASE_URI.toURL() + "products?name=fortnite"};
+            String[] getOperations = {BASE_URI.toURL() + "products/home", BASE_URI.toURL() + "products?name=amongus"};
 
             for (String getOperation : getOperations) {
                 System.out.println(getOperation);
