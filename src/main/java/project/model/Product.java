@@ -33,4 +33,10 @@ public class Product {
     public void addUserReview(UserReview review) {
         this.reviewList.add(review);
     }
+
+    public void setName(String name) { this.name = name; }
+
+    public void setDescription(String description) {this.description = description;}
+
+    public String getDescription () {return this.description; }
 }

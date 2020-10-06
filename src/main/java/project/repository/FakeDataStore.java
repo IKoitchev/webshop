@@ -43,4 +43,29 @@ public class FakeDataStore {
     public List<Product> getProductList() {
         return productList;
     }
+    public boolean deleteProduct(int id ){
+        for (Product product : productList){
+            if (product.getId() == id) {
+                productList.remove(product);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean addProduct(Product product ){
+        if (this.getProductById(product.getId()) != null){
+            return false;
+        }
+        productList.add(product);
+        return true;
+    }
+    public boolean updateProduct(Product product) {
+        Product old = this.getProductById(product.getId());
+        if (old == null) {
+            return false;
+        }
+        old.setName(product.getName());
+        old.setDescription(product.getDescription());
+        return true;
+    }
 }
