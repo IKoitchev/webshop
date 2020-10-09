@@ -33,7 +33,7 @@ public class ProductResources {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductByName(@QueryParam("name") String name) {
-        Product product;
+        //Product product;
         if (uriInfo.getQueryParameters().containsKey("name")){
             return Response.ok(fakeDataStore.getProductByName(name)).build();
         }
