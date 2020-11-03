@@ -1,43 +1,34 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
+
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./Components/Navbar";
-import Axios from "axios";
-import Read from "./Components/Read";
-
-
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import './App.css';
+import "bootstrap/dist/css/bootstrap.css";
+import Home from './Components/pages/Home.js';
+import Services from './Components/pages/Services';
+import Products from './Components/pages/Products';
+import SignUp from './Components/pages/SignUp';
 
 function App() {
 
-
-
-  return <div>
-    
-  </div>;
-
-  /*
-  
-  <React.Fragment>
-          <Navbar />
-          <main className="container">texttext</main>
-        </React.Fragment>
-  
-  <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          
-        </a>
-      </header>
-    </div>*/
-}
+  return(
+    <>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/services' component={Services} />
+          <Route path='/products' component={Products} />
+          <Route path='/sign-up' component={SignUp} />
+        </Switch>
+      </Router>
+        
+     
+      
+    </>
+  );
+  // <FetchAPI/>
+};
 
 export default App;
