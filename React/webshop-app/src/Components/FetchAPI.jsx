@@ -8,7 +8,7 @@ class FetchAPI extends Component {
     }
     
     async componentDidMount(){
-        const url = "/products?name=" + this.props.name;
+        const url = "/products/get?name=" + this.props.name;
         const response = await fetch(url);
         console.log(response);
         const data = await response.json();
@@ -22,13 +22,15 @@ class FetchAPI extends Component {
         return (
         <div>
             {this.state.loading ?
-                <div>loading...</div> :
+                <div>loading product info...</div> :
+            
                 <div>
-                    {
+                    <br/>
+                    {this.state.product.id}.&nbsp;
+                    {this.state.product.name}: <br/>
+                    Genre: {this.state.product.description}<br/>
+                    Price: {this.state.product.price}<br/>
                     
-                    this.state.product.map((product, index) =>{
-                        return <h2>{product.name, product.id}</h2>
-                    })}
                 </div>}
         </div>
         );
