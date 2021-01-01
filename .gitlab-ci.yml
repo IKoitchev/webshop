@@ -4,7 +4,7 @@ stages:
 
 build:
   script:
-    - "mvn install -B -f webshop/pom.xml"
+    - "mvn install -B -f ./webshop/pom.xml"
  
 test:
   stage: test
