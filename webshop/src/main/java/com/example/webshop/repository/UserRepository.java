@@ -1,6 +1,6 @@
 package com.example.webshop.repository;
 
-import com.example.webshop.model.Product;
+import com.example.webshop.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -8,10 +8,11 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.Optional;
 
 @RepositoryRestResource
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Product findByNameContaining(String name);
+    Optional<User> findByUsername(String username);
 
+    Boolean existsByUsername(String username);
 
-    Product findByName(String name);
+    Boolean existsByEmail(String email);
 }

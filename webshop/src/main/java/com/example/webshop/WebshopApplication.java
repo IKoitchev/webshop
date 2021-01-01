@@ -1,6 +1,7 @@
 package com.example.webshop;
 
 import com.example.webshop.model.Product;
+import com.example.webshop.repository.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
@@ -13,8 +14,9 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 
-@EnableJpaRepositories(basePackages = "com.example.webshop.repository")
+
 @SpringBootApplication
+@EnableJpaRepositories(basePackages = "com.example.webshop.repository")
 public class WebshopApplication {
 
 	public static void main(String[] args) {

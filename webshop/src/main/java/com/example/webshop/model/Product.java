@@ -20,12 +20,16 @@ public class Product {
     private String name;
     @Column(name = "price")
     private double price = 10.0;
-    //private List<UserReview> reviewList;
+    @Column(name="url")
+    private String url;
 
-    /*public Product(String name) {
-        this.name = name;
-        //reviewList = new ArrayList<UserReview>();
-    }*/
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Product() {
 
@@ -41,9 +45,7 @@ public class Product {
     public String getInfo(){
         return this.id + ". " + this.name + " - " + this.description;
     }
-    /*public void addUserReview(UserReview review) {
-        this.reviewList.add(review);
-    }*/
+
 
     public void setId(long id) {
         this.id = id;
