@@ -9,7 +9,7 @@ build:
 test:
   stage: test
   script:
-    - ./gradlew test
+    - "mvn test -B -f ./webshop/pom.xml"
  
 after_script:
   - echo "End CI"
