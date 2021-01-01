@@ -4,7 +4,7 @@ stages:
 
 build:
   script:
-    - ./gradlew assemble
+    - "mvn install -B -f webshop/pom"
  
 test:
   stage: test
