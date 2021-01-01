@@ -59,20 +59,20 @@ class ProductResourcesTest {
 
     }
 
-    @Test
+    /*@Test
     void testAddProduct() throws URISyntaxException{
         RestTemplate restTemplate = new RestTemplate();
         String productName = "testProduct";
         double productPrice = 15.0;
 
-        final String baseURI = "http://localhost:" + randomSeverPort + "/products/post?name=" + productName +"&price="+productPrice;
+        final String baseURI = "http://localhost:" + randomSeverPort + "/products/post"; //?name=" + productName +"&price="+productPrice;
         URI uri = new URI(baseURI);
 
-        ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
+        ResponseEntity<String> result = restTemplate.postForEntity(uri, String.class);
 
         
     }
-
+*/
     @Test
     void testUpdateProductDescription() {
     }
