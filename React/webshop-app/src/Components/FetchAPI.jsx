@@ -1,39 +1,65 @@
 import React, { Component } from 'react';
 
 class FetchAPI extends Component {
+    prod = [{name: "fffff", id:"" }];
 
     state = { 
-        loading: true,
-        product: null,
+        loading: false,
+        products: [],
+        timestamp: 0
     }
-    
-    async componentDidMount(){
-        const url = "/products/get?name=" + this.props.name;
+    async componentDidUpdate(){
+        alert(this.props.name);
+        let url = "/products/all";
+
+        if(this.props.name){
+            url = "/products/get?name=" + this.props.name;
+            
+        }
+
         const response = await fetch(url);
-        console.log(response);
+        this.prod = await response.json();
+        //this.setState({products: data, loading: false, timestamp: this.props.timestamp});
+        console.log(this.state);
+
+        this.render();
+    }
+    async componentDidMount(){
+       /* alert("mounted");
+        let url = "/products/all";
+
+        if(this.props.name){
+            url = "/products/get?name=" + this.props.name;
+            
+        }
+
+        const response = await fetch(url);
         const data = await response.json();
-        //console.log(data)
-        this.setState({product: data, loading: false});
-        console.log(data);
+        this.setState({products: data, loading: false, timestamp: this.props.timestamp});
+        console.log(this.state);*/
+       
         
     }
 
     render() { 
+        
         return (
+            
         <div>
             {this.state.loading ?
                 <div>loading product info...</div> :
             
                 <div>
                     <br/>
-                    {this.state.product.id}.&nbsp;
-                    {this.state.product.name}: <br/>
-                    Genre: {this.state.product.description}<br/>
-                    Price: {this.state.product.price}<br/>
+                    {this.prod[0].name
+                        
+                    }
+                    
                     
                 </div>}
         </div>
         );
+        
     }
 }
  
