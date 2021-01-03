@@ -3,7 +3,7 @@ import { Component } from "react";
 import { React } from "react";
 import "../../App.css";
 import Product from "../Product";
-
+import Navbar from "../Navbar";
 class Products extends Component {
   state = {
     products: [],
@@ -40,32 +40,35 @@ class Products extends Component {
   };
   render() {
     return (
-      <div>
-        <h1 className="products">PRODUCTS</h1>
+      <>
+        <Navbar />
+        <div>
+          <h1 className="products">PRODUCTS</h1>
 
-        <input
-          type="text"
-          className="search"
-          placeholder="Search.."
-          id="searchbox"
-        />
-        <input type="button" value="search" onClick={this.handleSearch} />
-        <br />
-        {this.state.loading ? (
-          "Loading Page..."
-        ) : (
-          <ul>
-            {this.state.products.map((p, i) => {
-              console.log(this.state.products);
-              return (
-                <li key={i}>
-                  <Product product={p} />
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
+          <input
+            type="text"
+            className="search"
+            placeholder="Search.."
+            id="searchbox"
+          />
+          <input type="button" value="search" onClick={this.handleSearch} />
+          <br />
+          {this.state.loading ? (
+            "Loading Page..."
+          ) : (
+            <ul>
+              {this.state.products.map((p, i) => {
+                console.log(this.state.products);
+                return (
+                  <li key={i}>
+                    <Product product={p} />
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+      </>
     );
   }
 }

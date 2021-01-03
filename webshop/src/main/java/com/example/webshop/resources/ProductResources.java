@@ -33,19 +33,13 @@ public class ProductResources {
 
     }
 
-    @PostMapping(value = "/post")
-    public Product addProduct(@RequestParam String name, double price){
-        Product product = new Product();
-        product.setName(name);
-        product.setPrice(price);
-        product.setDescription("no description");
+    @PostMapping(value = "/post", consumes = "application/json", produces = "application/json")
+    public Product addProduct(@RequestBody Product product){
         productRepository.save(product);
         return product;
     }
-    @PutMapping(value = "/update")
-    public Product updateProductDescription(@RequestParam String description, String name){
-        Product product = productRepository.findByName(name);
-        product.setDescription(description);
+    @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
+    public Product updateProduct(@RequestBody Product product){
         productRepository.save(product);
         return product;
     }

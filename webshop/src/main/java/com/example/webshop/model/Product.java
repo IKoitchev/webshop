@@ -18,6 +18,8 @@ public class Product {
     private String description = "game";
     @Column(name = "name")
     private String name;
+    @Column(name="genre")
+    private String genre;
     @Column(name = "price")
     private double price = 10.0;
     @Column(name="url")
@@ -64,4 +66,7 @@ public class Product {
     public void setDescription(String description) {this.description = description;}
 
     public String getDescription () { return this.description; }
+
+    public String getGenre(){ return this.genre;}
+    public void setGenre(String genre) {this.genre = genre;}
 }

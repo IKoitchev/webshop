@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import authService from '../services/auth.service';
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -36,7 +37,8 @@ function Navbar() {
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-          <li className='nav-item-mobile'>
+          {authService.getCurrentUser() ?
+            <li className='nav-item-mobile'>
               <Link
                 to='/profile'
                 className='nav-links'
@@ -45,6 +47,18 @@ function Navbar() {
                 My Profile
               </Link>
             </li>
+            :
+            <li className='nav-item-mobile'>
+              <Link
+                to='/login'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Log in
+              </Link>
+            </li>
+        }
+          
             {/* <li className='nav-item'>
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                 Home
@@ -68,16 +82,18 @@ function Navbar() {
                 Products
               </Link>
             </li>
-
-            <li className='nav-item-mobile'>
+            {authService.getCurrentUser() ?
+            <li className='nav-item'>
               <Link
-                to='/sign-up'
+                to='/products'
                 className='nav-links'
-                onClick={closeMobileMenu}
+                onClick={authService.logout}
               >
-                Sign Up
+                Logout
               </Link>
-            </li>
+            </li> : null
+            }
+            
             
           </ul>
           

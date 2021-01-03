@@ -10,20 +10,21 @@ import Services from "./Components/pages/Services";
 import Products from "./Components/pages/Products";
 import Register from "./Components/auth/register.component";
 import Login from "./Components/auth/login.component";
-import Profile from "./Components/auth/profile.component";
+import Profile from "./Components/pages/Profile";
+import ProtectedRoute from "./Components/auth/protected.route";
 
 function App() {
   return (
     <>
       <Router>
-        <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/services" component={Services} />
           <Route path="/products" component={Products} />
           <Route path="/sign-up" component={Register} />
           <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
+          <ProtectedRoute path="/profile" component={Profile} />
+          <Route path="*" component={() => "404 NOT FOUND"} />
         </Switch>
       </Router>
     </>
