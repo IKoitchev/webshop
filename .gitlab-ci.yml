@@ -23,7 +23,9 @@ sonarqube-check:
     paths:
       - .sonar/cache
   script:
-    - "mvn verify sonar:sonar -Dsonar.qualitygate.wait=true -B -f ./webshop/pom.xml"
+    - "mvn verify sonar:sonar -Dsonar.qualitygate.wait=true -B -f ./webshop/pom.xml
+       -D"sonar.login=d37fec383ac857345ef8f43d6c9773005b18b366" 
+       -D"sonar. password=" -D"sonar.host.url=http://localhost:9000""
   allow_failure: true
   only:
     - merge_requests
