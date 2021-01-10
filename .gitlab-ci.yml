@@ -23,7 +23,7 @@ sonarqube-check:
     paths:
       - .sonar/cache
   script:
-    - mvn verify sonar:sonar -Dsonar.qualitygate.wait=true ./webshop/pom.xml
+    - "mvn verify sonar:sonar -Dsonar.qualitygate.wait=true -B -f ./webshop/pom.xml"
   allow_failure: true
   only:
     - merge_requests
