@@ -31,6 +31,18 @@ class ProductResourcesTest {
     @LocalServerPort
     int randomSeverPort;
 
+    @Autowired
+    ProductRepository productRepository;
+
+    public Product getTestProduct(){
+        Product product = new Product();
+        product.setName("testProduct");
+        product.setPrice(15);
+        product.setDescription("testingProduct");
+        product.setGenre("genre");
+        return product;
+    }
+
     @Test
     void testGetAllProducts() throws URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
@@ -66,11 +78,7 @@ class ProductResourcesTest {
     @Test
     void testAddProduct() throws URISyntaxException{
         RestTemplate restTemplate = new RestTemplate();
-        Product product = new Product();
-        product.setName("testProduct");
-        product.setPrice(15);
-        product.setDescription("testingProduct");
-        product.setGenre("genre");
+        Product product = getTestProduct();
 
         final String baseURI = "http://localhost:" + randomSeverPort + "/products/post";
         URI uri = new URI(baseURI);
@@ -81,14 +89,16 @@ class ProductResourcesTest {
         ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
 
         Assert.assertEquals(200, result.getStatusCodeValue());
-        
+
+        productRepository.deleteById(productRepository.findByName("testProduct").getId()); // Delete the product afterwards
     }
 
     @Test
     void testUpdateProduct() throws URISyntaxException{
         RestTemplate restTemplate = new RestTemplate();
-        Product product = new Product();
-        product.setName("testProduct - updated ");
+        productRepository.save(getTestProduct());
+        Product product = productRepository.findByName("testProduct");
+        product.setName("testProduct - updated");
         product.setPrice(15);
         product.setDescription("testingProduct - updated");
         product.setGenre("genre");
@@ -102,18 +112,22 @@ class ProductResourcesTest {
         ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.PUT, request, String.class);
 
         Assert.assertEquals(200, result.getStatusCodeValue());
+
+        productRepository.deleteById(productRepository.findByName("testProduct - updated").getId());
     }
 
-    /*@Test
+    @Test
     void testDeleteProductById() throws URISyntaxException{
         RestTemplate restTemplate = new RestTemplate();
-        int productId = 5;
 
-        final String baseURI = "http://localhost:" + randomSeverPort + "/products/delete?id=" + productId;
+        productRepository.save(getTestProduct());
+        Product product = productRepository.findByName("testProduct");
+
+        final String baseURI = "http://localhost:" + randomSeverPort + "/products/delete?id=" + product.getId();
         URI uri = new URI(baseURI);
 
         ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.DELETE, null, String.class);
 
         Assert.assertEquals(200, result.getStatusCodeValue());
-    }*/
+    }
 }
