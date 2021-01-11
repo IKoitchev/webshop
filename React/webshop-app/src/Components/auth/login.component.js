@@ -99,6 +99,7 @@ export default class Login extends Component {
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <Input
+                id="username"
                 type="text"
                 className="form-control"
                 name="username"
@@ -111,6 +112,7 @@ export default class Login extends Component {
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <Input
+                id="password"
                 type="password"
                 className="form-control"
                 name="password"
@@ -122,6 +124,7 @@ export default class Login extends Component {
 
             <div className="form-group">
               <button
+                id="loginbtn"
                 className="btn btn-primary btn-block"
                 disabled={this.state.loading}
               >
