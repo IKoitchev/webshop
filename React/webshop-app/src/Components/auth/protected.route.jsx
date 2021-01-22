@@ -7,7 +7,7 @@ const ProtectedRoute = ({component: Component, ...rest}) =>{
         <Route
             {...rest}
             render={props =>{
-                console.log(authService.getCurrentUser())
+                
                 if(authService.getCurrentUser()){
                     return <Component {...props}/>
                 }

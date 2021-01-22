@@ -15,7 +15,7 @@ public class Product {
     @Column(name = "id")
     private long id;
     @Column(name = "description")
-    private String description = "game";
+    private String description = "no description";
     @Column(name = "name")
     private String name;
     @Column(name="genre")
@@ -24,6 +24,8 @@ public class Product {
     private double price = 10.0;
     @Column(name="url")
     private String url;
+    @Column(name="author")
+    private String author;
 
     public String getUrl() {
         return url;
@@ -36,6 +38,16 @@ public class Product {
     public Product() {
 
     }
+
+    public Product(String name, String genre, double price, String url, String author, String description) {
+        this.name = name;
+        this.genre = genre;
+        this.price = price;
+        this.url = url;
+        this.author = author;
+        this.description = description;
+    }
+
     public String getName(){
         return this.name;
     }
@@ -68,7 +80,16 @@ public class Product {
     public String getDescription () { return this.description; }
 
     public String getGenre(){ return this.genre;}
+
     public void setGenre(String genre) {this.genre = genre;}
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 }
 
 

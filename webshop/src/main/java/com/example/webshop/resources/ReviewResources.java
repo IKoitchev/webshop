@@ -23,21 +23,45 @@ public class ReviewResources {
         List<Review> allReviews = reviewRepository.findAll();
         List<Review> matchingId = new ArrayList<>();
         for(int i = 0; i<allReviews.size();i++){
-            if(allReviews.get(i).getProductId() == productId){
+            if(allReviews.get(i).getProductId() == productId
+                    && allReviews.get(i).getText() != null
+                    && !allReviews.get(i).getText().isEmpty()){
                 matchingId.add(allReviews.get(i));
             }
         }
         return matchingId;
     }
-    @PostMapping(value="/post", consumes = "application/json", produces = "application/json")
-    public Review createReview(@RequestBody Review review){
+
+    @GetMapping(value = "/owned")
+    public boolean isOwned(@RequestParam long productId, String authorName)
+    {
+        List<Review> allReviews = reviewRepository.findAll();
+        for(Review r:allReviews)
+        {
+            if(r.getProductId() == productId && authorName.equals(r.getAuthor())){
+                return true;
+            }
+        }
+        return false;
+    }
+    @PostMapping(value="/buyProduct", consumes = "application/json", produces = "application/json")
+    public Review buyProduct(@RequestBody Review review){
         reviewRepository.save(review);
         return review;
     }
     @PutMapping(value="/update", consumes = "application/json", produces = "application/json" )
-    public Review updateReview(@RequestBody Review review){
-        reviewRepository.save(review);
-        return review;
+    public Review addReview(@RequestBody Review review){
+        List<Review> allReviews = reviewRepository.findAll();
+        Review searchedReview = new Review();
+        for(Review r: allReviews){
+            if(r.getProductId() == review.getProductId() && r.getAuthor().equals(review.getAuthor())){
+                searchedReview = r;
+            }
+        }
+        searchedReview.setText(review.getText());
+
+        reviewRepository.save(searchedReview);
+        return searchedReview;
     }
     @DeleteMapping(value="/delete")
     public void deleteReview(@RequestParam long id){

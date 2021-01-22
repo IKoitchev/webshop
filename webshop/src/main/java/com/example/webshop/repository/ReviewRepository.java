@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     List<Review> findAll ();
+
+
 }

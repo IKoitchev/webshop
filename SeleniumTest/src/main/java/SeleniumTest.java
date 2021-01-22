@@ -25,8 +25,9 @@ public class SeleniumTest {
             driver.findElement(By.id("loginbtn")).click();
 
 
-            /*if(driver.getCurrentUrl().equals(expectedURL))
-                driver.quit();*/
+            if(driver.getCurrentUrl().equals(expectedURL))
+                System.out.println("Success");
+                //driver.quit();
 
 
     }

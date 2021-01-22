@@ -1,33 +1,40 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import Navbar from "../Navbar";
-
+import "../../App.css";
+import Axios from "axios";
+import Product from "../Product/Product";
 export default class Profile extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      redirect: null,
       userReady: false,
-      currentUser: { username: "" },
+      currentUser: null,
+      ownedProducts: [],
     };
   }
-
+  getData = (...res) => {
+    this.setState({
+      userReady: true,
+      currentUser: AuthService.getCurrentUser(),
+      ownedProducts: res,
+    });
+    //console.log(this.state);
+  };
+  async getOwnedProducts() {
+    await Axios.get(
+      "http://localhost:8080/products/ownedBy?name=" +
+        AuthService.getCurrentUser().username
+    ).then((res) => this.getData(...res.data));
+  }
   componentDidMount() {
-    const currentUser = AuthService.getCurrentUser();
-
-    if (!currentUser) this.setState({ redirect: "/" });
-    this.setState({ currentUser: currentUser, userReady: true });
+    if (AuthService.getCurrentUser()) {
+      this.getOwnedProducts();
+    }
   }
 
   render() {
-    if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />;
-    }
-
-    const { currentUser } = this.state;
-
     return (
       <>
         <Navbar />
@@ -36,23 +43,31 @@ export default class Profile extends Component {
             <div>
               <header className="jumbotron">
                 <h3>
-                  <strong>{currentUser.username}</strong> Profile
+                  <strong>Logged in as: &nbsp;</strong>
+                  {this.state.currentUser.username}
+                  {AuthService.getCurrentUser().roles[0] === "ROLE_ADMIN" ? (
+                    <>
+                      <label className="label-title">&nbsp;- Admin</label>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </h3>
+                <p>
+                  <strong>Email:</strong> {this.state.currentUser.email}
+                </p>
               </header>
-
-              <p>
-                <strong>Id:</strong> {currentUser.id}
-              </p>
-              <p>
-                <strong>Email:</strong> {currentUser.email}
-              </p>
-              <strong>Authorities:</strong>
-              <ul>
-                {currentUser.roles &&
-                  currentUser.roles.map((role, index) => (
-                    <li key={index}>{role}</li>
-                  ))}
-              </ul>
+              <div className="purchases-container">
+                <label className="purchases-label">Your purchases: </label>
+                <br />
+                {AuthService.getCurrentUser() ? (
+                  this.state.ownedProducts.map((p, i) => {
+                    return <Product product={p} key={i} />;
+                  })
+                ) : (
+                  <>Loading...</>
+                )}
+              </div>
             </div>
           ) : null}
         </div>

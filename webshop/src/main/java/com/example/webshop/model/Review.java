@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080/reviews")
 @Entity(name = "reviews")
@@ -15,35 +16,41 @@ public class Review {
     private long id;
     @Column(name = "text")
     private String text = "";
-    @Column(name = "author_id")
-    private int userId;
-    @Column(name = "ProductId")
-    private int productId;
+    @Column(name = "author")
+    private String author;
+    @Column(name = "product_id")
+    private long productId;
     @Column(name="date_posted")
     private Date datePosted ;
 
+
     public Review() { }
 
-    public Review(String text, int authorId, Date datePosted, int productId){
-        this.text = text;
-        this.datePosted = datePosted;
-        this.userId = authorId;
+    public Review(String author, long productId){
+
+        this.author = author;
         this.productId = productId;
     }
+    public Review(String author, long productId, String text){
 
-    public int getUserId() {
-        return userId;
+        this.author = author;
+        this.productId = productId;
+        this.text = text;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public String getAuthor() {
+        return author;
     }
 
-    public int getProductId() {
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(long productId) {
         this.productId = productId;
     }
 

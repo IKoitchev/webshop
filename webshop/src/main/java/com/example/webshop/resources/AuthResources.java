@@ -107,12 +107,12 @@ public class AuthResources {
                         roles.add(adminRole);
 
                         break;
-                    case "mod":
+                    /*case "mod":
                         Role modRole = roleRepository.findByName(ERole.ROLE_DEVELOPER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
 
-                        break;
+                        break;*/
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_DEVELOPER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));

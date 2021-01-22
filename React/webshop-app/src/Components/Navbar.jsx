@@ -66,11 +66,11 @@ function Navbar() {
             </li> */}
             <li className='nav-item'>
               <Link
-                to='/services'
+                to='/statistics'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Services
+                Statistics
               </Link>
             </li>
             <li className='nav-item'>
