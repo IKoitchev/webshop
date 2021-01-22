@@ -47,6 +47,14 @@ public class Product {
         this.author = author;
         this.description = description;
     }
+    public Product(String name, String genre, double price, String url, String description) {
+        this.name = name;
+        this.genre = genre;
+        this.price = price;
+        this.url = url;
+        this.author = author;
+        this.description = description;
+    }
 
     public String getName(){
         return this.name;

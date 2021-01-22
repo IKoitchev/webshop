@@ -96,6 +96,7 @@ class ProductResourcesTest {
     @Test
     void testUpdateProduct() throws URISyntaxException{
         RestTemplate restTemplate = new RestTemplate();
+
         productRepository.save(getTestProduct());
         Product product = productRepository.findByName("testProduct");
         product.setName("testProduct - updated");
@@ -104,16 +105,17 @@ class ProductResourcesTest {
         product.setGenre("genre");
 
         final String baseURI = "http://localhost:" + randomSeverPort + "/products/update";
-        URI uri = new URI(baseURI);
+         URI uri = new URI(baseURI);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Product> request = new HttpEntity<>(product, httpHeaders);
         ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.PUT, request, String.class);
 
+
         Assert.assertEquals(200, result.getStatusCodeValue());
 
-        productRepository.deleteById(productRepository.findByName("testProduct - updated").getId());
+        productRepository.deleteById(productRepository.findByName("testProduct").getId());
     }
 
     @Test
